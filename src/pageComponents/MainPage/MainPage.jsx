@@ -37,7 +37,7 @@ const MainPage = () => {
       <div className={styles.Menu}>
         <button 
           className={clsx(styles.Button, {
-            ['']: activeTab === 0
+            [styles.ButtonActive]: activeTab === 0
           })}
           onClick={() => setActiveTab(0)}
         >
@@ -45,7 +45,7 @@ const MainPage = () => {
         </button>
         <button 
           className={clsx(styles.Button, {
-            ['']: activeTab === 1
+            [styles.ButtonActive]: activeTab === 1
           })}
           onClick={() => setActiveTab(1)}
         >
