@@ -2,11 +2,19 @@ import { useState, useEffect } from 'react'
 import { doc, getDoc } from 'firebase/firestore'
 import { useTelegram } from '@/hooks'
 import { db } from '@/firebase'
+import clsx from 'clsx'
 import styles from './index.module.sass'
 
+import { MainMenu, InfoMenu } from './components'
+
+const content = {
+  0: <MainMenu />,
+  1: <InfoMenu />
+}
 const MainPage = () => {
   const { user } = useTelegram()
   const [currentUser, setCurrentUser] = useState(null)
+  const [activeTab, setActiveTab] = useState(0)
 
   const getUser = async () => {
     if (!user?.id) {
@@ -17,13 +25,33 @@ const MainPage = () => {
       return setCurrentUser(docSnap.data())
     }
   }
-  console.log(currentUser)
+
   useEffect(() => {
     getUser()
   }, [user?.id])
   return (
     <div className={styles.Root}>
-      <h2>Main</h2>
+      <div className={styles.Content}>
+        {content[activeTab]}
+      </div>
+      <div className={styles.Menu}>
+        <button 
+          className={clsx(styles.Button, {
+            ['']: activeTab === 0
+          })}
+          onClick={() => setActiveTab(0)}
+        >
+          Главная
+        </button>
+        <button 
+          className={clsx(styles.Button, {
+            ['']: activeTab === 1
+          })}
+          onClick={() => setActiveTab(1)}
+        >
+          Инфо
+        </button>
+      </div>
     </div>
   )
 }
