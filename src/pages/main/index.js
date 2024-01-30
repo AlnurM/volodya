@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { MainPage } from '@/pageComponents'
 
-const Home = () => {
+const Main = () => {
   return (
     <>
       <Head>
