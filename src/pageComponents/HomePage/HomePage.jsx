@@ -1,14 +1,21 @@
+import { doc, setDoc } from 'firebase/firestore'
 import { useTelegram } from '@/hooks'
+import { db } from '@/firebase'
 import styles from './index.module.sass'
 
 const HomePage = () => {
   const { tg, user } = useTelegram()
 
-  console.log(tg)
-  console.log(user)
+  const handleRegister = async () => {
+    if (!user) {
+      return 
+    }
+    await setDoc(doc(db, 'user', user.id), user)
+  }
+
   return (
     <div className={styles.Root}>
-      <button className={styles.Button}>Регистрация</button>
+      <button className={styles.Button} onClick={handleRegister}>Регистрация</button>
     </div>
   )
 }
