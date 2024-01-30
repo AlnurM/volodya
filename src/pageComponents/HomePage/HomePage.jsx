@@ -1,4 +1,5 @@
-import { doc, setDoc } from 'firebase/firestore'
+import { useEffect } from 'react'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { useTelegram } from '@/hooks'
 import { db } from '@/firebase'
 import styles from './index.module.sass'
@@ -14,6 +15,13 @@ const HomePage = () => {
       ...user
     }).then(res => console.log(res)).catch(e => console.log(e))
   }
+
+  useEffect(() => {
+    if (!user?.id) {
+      return 
+    }
+    getDoc(doc(db, 'user', user.id.toString())).then(res => console.log(res))
+  }, [user?.id])
   return (
     <div className={styles.Root}>
       <button className={styles.Button} onClick={handleRegister}>Регистрация</button>
