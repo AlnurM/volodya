@@ -11,6 +11,12 @@ const HomePage = () => {
       return 
     }
     console.log(user)
+    await setDoc(doc(db, "user", "LA"), {
+      name: "Los Angeles",
+      state: "CA",
+      country: "USA"
+    })
+
     await setDoc(doc(db, 'user', 'sdskdcscsd'), {
       ...user
     }).then(res => console.log(res)).catch(e => console.log(e))
