@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { useTelegram } from '@/hooks'
 import { db } from '@/firebase'
 import styles from './index.module.sass'
 
 const HomePage = () => {
-  const { tg, user } = useTelegram()
-  const [currentUser, setCurrentUser] = useState(null)
+  const { user } = useTelegram()
+  const router = useRouter()
 
   const getUser = async () => {
     if (!user?.id) {
@@ -14,21 +15,25 @@ const HomePage = () => {
     }
     const docSnap = await getDoc(doc(db, 'user', user.id.toString()))
     if (docSnap.exists()) {
-      return setCurrentUser(docSnap.data())
+      return docSnap.data()
     }
   }
-  console.log(currentUser)
+
   const handleRegister = async () => {
     if (!user?.id) {
       return 
     }
     await setDoc(doc(db, 'user', user.id.toString()), {
       ...user
-    }).then(res => console.log(res)).catch(e => console.log(e))
+    }).then(() => router.push('/main')).catch(e => console.log(e))
   }
 
   useEffect(() => {
-    getUser()
+    getUser().then(res => {
+      if (res.id) {
+        router.push('/main')
+      }
+    })
   }, [user?.id])
   return (
     <div className={styles.Root}>
