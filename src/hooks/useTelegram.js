@@ -12,7 +12,7 @@ const useTelegram = () => {
   const onClose = () => {
     tg.close();
   };
-
+  console.log(tg?.initDataUnsafe)
   return {
     onClose,
     tg,
