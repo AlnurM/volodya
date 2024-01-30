@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+        <script async src="https://telegram.org/js/telegram-web-app.js"></script>
       </Head>
       <HomePage />
     </>
