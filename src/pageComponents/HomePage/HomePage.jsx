@@ -15,6 +15,7 @@ const HomePage = () => {
   console.log(tg)
   return (
     <div className={styles.Root}>
+      <span>{user?.id || 'nothing'}</span>
       <button className={styles.Button} onClick={handleRegister}>Регистрация</button>
     </div>
   )
