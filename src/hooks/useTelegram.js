@@ -7,7 +7,7 @@ const useTelegram = () => {
     };
   }
 
-  const tg = window.Telegram.WebApp;
+  const tg = window?.Telegram?.WebApp;
 
   const onClose = () => {
     tg.close();
@@ -16,7 +16,7 @@ const useTelegram = () => {
   return {
     onClose,
     tg,
-    user: tg.initDataUnsafe?.user,
+    user: tg?.initDataUnsafe?.user,
   };
 };
 
