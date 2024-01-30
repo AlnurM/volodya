@@ -10,6 +10,10 @@ const HomePage = () => {
     if (!user?.id) {
       return 
     }
+    await setDoc(doc(db, 'user', 'sdskdcscsd'), {
+      ...user
+    }).then(res => console.log(res)).catch(e => console.log(e))
+
     await setDoc(doc(db, 'user', user.id.toString()), {
       ...user
     }).then(res => console.log(res)).catch(e => console.log(e))
