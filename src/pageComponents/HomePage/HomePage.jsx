@@ -12,7 +12,7 @@ const HomePage = () => {
     }
     await setDoc(doc(db, 'user', user.id), user)
   }
-
+  console.log(tg)
   return (
     <div className={styles.Root}>
       <button className={styles.Button} onClick={handleRegister}>Регистрация</button>
