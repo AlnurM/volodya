@@ -10,7 +10,7 @@ const HomePage = () => {
     if (!user?.id) {
       return 
     }
-    await setDoc(doc(db, 'user', user.id), {
+    await setDoc(doc(db, 'user', user.id.toString()), {
       ...user
     })
   }
