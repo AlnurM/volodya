@@ -18,7 +18,7 @@ const MainMenu = () => {
       return setCurrentUser(docSnap.data())
     }
   }
-  console.log(user)
+  console.log(user?.photo_url)
   console.log(currentUser)
   useEffect(() => {
     getUser()
