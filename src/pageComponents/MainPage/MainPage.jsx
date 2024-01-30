@@ -1,7 +1,4 @@
-import { useState, useEffect } from 'react'
-import { doc, getDoc } from 'firebase/firestore'
-import { useTelegram } from '@/hooks'
-import { db } from '@/firebase'
+import { useState } from 'react'
 import clsx from 'clsx'
 import styles from './index.module.sass'
 
@@ -12,23 +9,7 @@ const content = {
   1: <InfoMenu />
 }
 const MainPage = () => {
-  const { user } = useTelegram()
-  const [currentUser, setCurrentUser] = useState(null)
   const [activeTab, setActiveTab] = useState(0)
-
-  const getUser = async () => {
-    if (!user?.id) {
-      return 
-    }
-    const docSnap = await getDoc(doc(db, 'user', user.id.toString()))
-    if (docSnap.exists()) {
-      return setCurrentUser(docSnap.data())
-    }
-  }
-
-  useEffect(() => {
-    getUser()
-  }, [user?.id])
   return (
     <div className={styles.Root}>
       <div className={styles.Content}>
