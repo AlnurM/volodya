@@ -13,7 +13,6 @@ const HomePage = () => {
     await setDoc(doc(db, 'user', user.id), user)
   }
   console.log(tg)
-  console.log(process.env.API_KEY)
   return (
     <div className={styles.Root}>
       <button className={styles.Button} onClick={handleRegister}>Регистрация</button>
