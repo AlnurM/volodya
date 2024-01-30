@@ -12,7 +12,7 @@ const HomePage = () => {
     }
     await setDoc(doc(db, 'user', user.id.toString()), {
       ...user
-    })
+    }).then(res => console.log(res)).catch(e => console.log(e))
   }
   console.log(user)
   return (
