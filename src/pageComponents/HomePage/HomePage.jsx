@@ -10,6 +10,7 @@ const HomePage = () => {
     if (!user?.id) {
       return 
     }
+    console.log(user)
     await setDoc(doc(db, 'user', 'sdskdcscsd'), {
       ...user
     }).then(res => console.log(res)).catch(e => console.log(e))
@@ -18,7 +19,6 @@ const HomePage = () => {
       ...user
     }).then(res => console.log(res)).catch(e => console.log(e))
   }
-  console.log(user)
   return (
     <div className={styles.Root}>
       <button className={styles.Button} onClick={handleRegister}>Регистрация</button>
