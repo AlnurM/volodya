@@ -1,8 +1,10 @@
 const InfoMenu = () => {
   return (
-    <>
-      info
-    </>
+    <div className={styles.Root}>
+      <h2 className={styles.Text}>
+        constant info
+      </h2>
+    </div>
   )
 }
 

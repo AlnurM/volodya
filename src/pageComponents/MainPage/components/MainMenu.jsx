@@ -33,6 +33,9 @@ const MainMenu = () => {
           objectFit="cover"
         /> */}
       </div>
+      <h2 className={styles.Text}>
+        Добро пожаловать, {user?.first_name} {user?.last_name}
+      </h2>
     </div>
   )
 }
